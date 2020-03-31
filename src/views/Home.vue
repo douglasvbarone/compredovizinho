@@ -7,8 +7,13 @@
     </v-row>
     <v-row>
       <v-col>
-        <div v-if="loading">Carregando...</div>
-        <CompanyPanelsList :companies="fetchedCompanies" />
+        <LoadingPanel v-if="loading" />
+        <CompanyPanelsList v-if="!loading" :companies="fetchedCompanies" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-pagination />
       </v-col>
     </v-row>
   </v-container>
@@ -18,10 +23,11 @@
 import Search from '../components/Search'
 import { parseSheets } from '../tools/googleSheets'
 import CompanyPanelsList from '../components/CompanyPanelsList'
+import LoadingPanel from '../components/LoadingPanel'
 
 export default {
   name: 'Home',
-  components: { CompanyPanelsList, Search },
+  components: { LoadingPanel, CompanyPanelsList, Search },
   data: () => ({
     search: '',
     fetchedCompanies: {},
@@ -35,7 +41,9 @@ export default {
 
         this.fetchedCompanies = parseSheets(await result.json())
       } catch (e) {
-        console.log(e)
+        alert(
+          'Ocorreu um erro ao carregar a lista de empresas. Tente novamente mais tarde.'
+        )
       } finally {
         this.loading = false
       }

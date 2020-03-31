@@ -18,6 +18,7 @@
       :owner="company.owner"
       :instagram="company.instagram"
       :state="company.state"
+      :facebook="company.facebook"
       :description="company.description"
     />
   </v-expansion-panels>

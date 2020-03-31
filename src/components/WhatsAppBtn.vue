@@ -1,5 +1,6 @@
 <template>
   <v-btn
+          block
     :icon="onlyIcon"
     big
     v-if="whatsapp"
