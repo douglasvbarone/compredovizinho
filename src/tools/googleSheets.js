@@ -1,18 +1,22 @@
 const parseSheets = raw =>
   raw.feed.entry.map(entry => ({
-    empresa: entry.gsx$empresa.$t,
+    companyName: entry.gsx$empresa.$t,
     whatsapp:
-      entry.gsx$whatsappdddsemozeroapenasnúmeros.$t &&
-      entry.gsx$whatsappdddsemozeroapenasnúmeros.$t.replace(/[^\d]/g, ''),
-    cpf: entry.gsx$cnpjoucpf.$t,
+      entry.gsx$whatsapp.$t &&
+      entry.gsx$whatsapp.$t.replace(/[^\d]/g, ''),
+    cpfcnpj: entry.gsx$cnpjoucpf.$t,
     email: entry['gsx$e-mail'].$t,
-    segmento: entry.gsx$segmento.$t,
-    rua: entry.gsx$rua.$t,
-    numero: entry['gsx$número'].$t,
-    comp: entry['gsx$comp.'].$t,
-    bairro: entry.gsx$bairro.$t,
-    cidade: entry.gsx$cidade.$t,
-    cep: entry.gsx$cep.$t,
+    segment: entry.gsx$segmento.$t,
+    street: entry.gsx$rua.$t,
+    stNumber: entry['gsx$número'].$t,
+    complement: entry['gsx$comp.'].$t,
+    district: entry.gsx$bairro.$t,
+    city: entry.gsx$cidade.$t,
+    zipCode: entry.gsx$cep.$t,
+    owner: entry['gsx$nomedoproprietárioouresponsável'].$t,
+    instagram: entry.gsx$instagram.$t,
+    state: entry.gsx$estado.$t,
+    description: entry['gsx$serviçosprodutosquevocêvende'].$t,
     updatedAt: entry.gsx$carimbodedatahora.$t
   }))
 

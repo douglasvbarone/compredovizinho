@@ -6,7 +6,7 @@
     flat
     outlined
     prepend-inner-icon="search"
-    label="Buscar"
+    label="Buscar (Ex.: sushi, hambúrguer, pedreiro)"
     hint="Nome, serviço ou bairro"
   />
 </template>

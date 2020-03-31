@@ -1,22 +1,30 @@
 <template>
-  <div class="home">
-    <search v-model="search" />
-
-    <div v-if="loading">Carregando...</div>
-    <div v-else>{{ entries }}</div>
-  </div>
+  <v-container class="home">
+    <v-row>
+      <v-col>
+        <search v-model="search" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <div v-if="loading">Carregando...</div>
+        <CompanyPanelsList :companies="fetchedCompanies" />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
 import Search from '../components/Search'
 import { parseSheets } from '../tools/googleSheets'
+import CompanyPanelsList from '../components/CompanyPanelsList'
 
 export default {
   name: 'Home',
-  components: { Search },
+  components: { CompanyPanelsList, Search },
   data: () => ({
     search: '',
-    entries: {},
+    fetchedCompanies: {},
     loading: true
   }),
   methods: {
@@ -25,7 +33,7 @@ export default {
       try {
         const result = await fetch(process.env.VUE_APP_SHEET)
 
-        this.entries = parseSheets(await result.json())
+        this.fetchedCompanies = parseSheets(await result.json())
       } catch (e) {
         console.log(e)
       } finally {
