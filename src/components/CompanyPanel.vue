@@ -1,5 +1,5 @@
 <template>
-  <v-expansion-panel>
+  <v-expansion-panel @change="scrollTo">
     <v-expansion-panel-header>
       <template v-slot:default="{ open }">
         <v-row no-gutters>
@@ -8,10 +8,10 @@
               open ? companyName : title
             }}</span>
           </v-col>
-          <v-col :cols="12">
+          <v-col :cols="12" v-if="view === 'normal'">
             <span class="text--secondary" v-if="!open">{{ summary }}</span>
           </v-col>
-          <v-col class="mt-2" v-if="!open">
+          <v-col class="mt-2" v-if="!open && view === 'normal'">
             <v-icon class="mr-1" color="#25D366" v-if="whatsapp"
               >mdi-whatsapp</v-icon
             >
@@ -92,23 +92,27 @@ export default {
     'state',
     'description',
     'facebook',
-    'updatedAt'
+    'updatedAt',
+    'view'
   ],
   name: 'CompanyPanel',
-  data: () => ({}),
+  data: () => ({ open: false }),
   methods: {
     shrink(text) {
       const sizes = {
         xs: 30,
         sm: 55,
-        md: 90,
-        lg: 120,
+        md: 85,
+        lg: 95,
         xl: 200
       }
 
       if (text.length <= sizes[this.$vuetify.breakpoint.name]) return text
 
       return text.substring(0, sizes[this.$vuetify.breakpoint.name]) + '...'
+    },
+    scrollTo() {
+      this.$vuetify.goTo(this)
     }
   },
   computed: {

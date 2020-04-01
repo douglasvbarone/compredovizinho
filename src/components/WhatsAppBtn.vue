@@ -1,6 +1,7 @@
 <template>
   <v-btn
-          block
+    class="whatsapp-btn-bg"
+    block
     :icon="onlyIcon"
     big
     v-if="whatsapp"
@@ -43,4 +44,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.whatsapp-btn-bg {
+  background: #27b039;
+}
+</style>

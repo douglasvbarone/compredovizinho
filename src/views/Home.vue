@@ -1,15 +1,19 @@
 <template>
-  <v-container class="home main">
+  <v-container class="home main ">
+    <v-app-bar fixed flat app color="primary" dark>
+      <v-autocomplete
+        :items="cities"
+        prepend-inner-icon="mdi-map-marker"
+        hide-details
+        outlined
+        dense
+      />
+    </v-app-bar>
     <v-row>
-      <v-col>
+      <v-col :cols="12">
         <search v-model="search" />
       </v-col>
-      <v-col>
-        <v-autocomplete flat outlined rounded prepend-inner-icon="mdi-map-marker" />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
+      <v-col :cols="12">
         <LoadingPanel v-if="loading" />
         <CompanyPanelsList v-if="!loading" :companies="fetchedCompanies" />
       </v-col>
@@ -28,7 +32,7 @@ export default {
   components: { LoadingPanel, CompanyPanelsList, Search },
   data: () => ({
     search: '',
-    fetchedCompanies: {},
+    fetchedCompanies: [],
     loading: true
   }),
   methods: {
@@ -45,6 +49,17 @@ export default {
       } finally {
         this.loading = false
       }
+    }
+  },
+  computed: {
+    cities() {
+      return [
+        ...new Set(
+          this.fetchedCompanies.map(
+            company => `${company.city} (${company.state})`
+          )
+        )
+      ]
     }
   },
   async created() {

@@ -1,6 +1,6 @@
 <template>
   <v-text-field
-    
+
     v-model="search"
     @input="$emit('input', search)"
     flat
