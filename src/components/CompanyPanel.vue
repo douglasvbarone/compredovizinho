@@ -1,6 +1,6 @@
 <template>
   <v-expansion-panel>
-    <v-expansion-panel-header disable-icon-rotate>
+    <v-expansion-panel-header>
       <template v-slot:default="{ open }">
         <v-row no-gutters>
           <v-col :cols="12">
@@ -12,20 +12,47 @@
             <span class="text--secondary" v-if="!open">{{ summary }}</span>
           </v-col>
           <v-col class="mt-2" v-if="!open">
-            <v-icon color="#25D366" v-if="whatsapp">mdi-whatsapp</v-icon>
-            <v-icon color="#C13584" v-if="instagram">mdi-instagram</v-icon>
-            <v-icon color="#4267B2" v-if="facebook">mdi-facebook</v-icon>
+            <v-icon class="mr-1" color="#25D366" v-if="whatsapp"
+              >mdi-whatsapp</v-icon
+            >
+            <v-icon class="mr-1" color="#C13584" v-if="instagram"
+              >mdi-instagram</v-icon
+            >
+            <v-icon class="mr-1" color="#4267B2" v-if="facebook"
+              >mdi-facebook</v-icon
+            >
           </v-col>
         </v-row>
       </template>
     </v-expansion-panel-header>
     <v-expansion-panel-content class="text-justify">
-      <v-row no-gutters>
+      <v-row>
         <v-col>
           {{ description }}
         </v-col>
       </v-row>
-
+      <v-row>
+        <v-col>
+          <span class="font-weight-medium">Proprietário: </span>{{ owner }}
+          <span v-if="email"
+            >(<a :href="`mailto:${email}}`">{{ email }}</a
+            >)</span
+          >
+        </v-col>
+      </v-row>
+      <v-row v-if="segment">
+        <v-col>
+          <span class="font-weight-medium">Segmento:</span> {{ segment }}
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <span class="font-weight-medium">Endereço:</span> {{ street }}, n.º
+          {{ stNumber }}, {{ district }}.
+          <span class="font-weight-medium">{{ city }}, {{ state }}</span
+          >, CEP: {{ zipCode }}
+        </v-col>
+      </v-row>
       <v-row>
         <v-col v-if="instagram">
           <InstagramBtn :instagram="instagram" />

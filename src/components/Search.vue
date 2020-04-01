@@ -1,11 +1,12 @@
 <template>
   <v-text-field
-    class="ma-2"
+    
     v-model="search"
     @input="$emit('input', search)"
     flat
     outlined
-    prepend-inner-icon="search"
+    rounded
+    prepend-inner-icon="mdi-magnify"
     label="Buscar (Ex.: sushi, hambúrguer, pedreiro)"
     hint="Nome, serviço ou bairro"
   />

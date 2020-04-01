@@ -1,19 +1,17 @@
 <template>
-  <v-container class="home">
+  <v-container class="home main">
     <v-row>
       <v-col>
         <search v-model="search" />
+      </v-col>
+      <v-col>
+        <v-autocomplete flat outlined rounded prepend-inner-icon="mdi-map-marker" />
       </v-col>
     </v-row>
     <v-row>
       <v-col>
         <LoadingPanel v-if="loading" />
         <CompanyPanelsList v-if="!loading" :companies="fetchedCompanies" />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <v-pagination />
       </v-col>
     </v-row>
   </v-container>
