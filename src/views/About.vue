@@ -1,5 +1,14 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <v-container class="about">
+    <v-row>
+      <v-col>
+        <v-card>
+          <v-card-title>
+            <v-btn icon to="/" left><v-icon>mdi-arrow-left</v-icon></v-btn> Sobre...
+          </v-card-title>
+          <v-card-text> </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>

@@ -1,23 +1,26 @@
 <template>
-  <div v-resize="calculateItemsPerPage">
-    <v-container>
-      <v-row class="float-right">
-        <v-col>
-          <v-btn-toggle v-model="view" mandatory color="accent" dense>
-            <v-btn value="normal">
-              <v-icon>mdi-view-sequential</v-icon>
-            </v-btn>
-            <v-btn value="compact">
-              <v-icon>mdi-view-headline</v-icon>
-            </v-btn>
-          </v-btn-toggle>
-        </v-col>
-      </v-row>
-    </v-container>
-    <v-expansion-panels :popout="$vuetify.breakpoint.mdAndUp" hover>
+  <div
+    v-resize="calculateItemsPerPage"
+    id="companyList"
+    v-if="companies.length"
+  >
+    <v-row class="float-right">
+      <v-col>
+        <v-btn-toggle v-model="view" mandatory color="accent" dense>
+          <v-btn value="normal">
+            <v-icon>mdi-view-sequential</v-icon>
+          </v-btn>
+          <v-btn value="compact">
+            <v-icon>mdi-view-headline</v-icon>
+          </v-btn>
+        </v-btn-toggle>
+      </v-col>
+    </v-row>
+
+    <v-expansion-panels :inset="$vuetify.breakpoint.mdAndUp" hover>
       <CompanyPanel
-        v-for="(company, index) in paginatedResults"
-        :key="index"
+        v-for="company in paginatedResults"
+        :key="company.id"
         :view="view"
         :companyName="company.companyName"
         :whatsapp="company.whatsapp"
@@ -55,6 +58,15 @@
       </v-row>
     </v-container>
   </div>
+  <div v-else>
+    <v-container class="fill-height">
+      <v-row align="center" class="text-center">
+        <v-col>
+          Nada encontrado... <v-icon right>mdi-emoticon-sad</v-icon>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -87,10 +99,11 @@ export default {
 
       const OTHER_AREAS = 500
       const ITEM_HEIGHT = this.view === 'normal' ? 94 : 48
+      const MINIMUM = 5
 
       const calculated = vh ? Math.ceil((vh - OTHER_AREAS) / ITEM_HEIGHT) : 5
 
-      this.itemsPerPage = calculated > 1 ? calculated : 1
+      this.itemsPerPage = calculated > MINIMUM ? calculated : MINIMUM
 
       this.currentPage = 1
     }

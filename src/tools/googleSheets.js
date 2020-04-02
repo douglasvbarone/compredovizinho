@@ -1,11 +1,12 @@
 const parseSheets = raw =>
-  raw.feed.entry.map(entry => {
+  raw.feed.entry.map((entry, index) => {
     const facebook = entry.gsx$facebook.$t.match(
       // eslint-disable-next-line
       /(?:http:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)/
     )
 
     return {
+      id: `company-${index}`,
       companyName: entry.gsx$empresa.$t,
       whatsapp:
         entry.gsx$whatsapp.$t && entry.gsx$whatsapp.$t.replace(/[^\d]/g, ''),

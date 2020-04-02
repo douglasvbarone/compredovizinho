@@ -3,7 +3,7 @@
     <v-content>
       <router-view />
     </v-content>
-    <v-footer>
+    <v-footer color="secondary" dark>
       <v-btn
         href="https://forms.gle/62zt7bNm7Z7iXjaf6"
         target="_blank"
@@ -13,7 +13,7 @@
         Quero meu negócio aqui!
       </v-btn>
       <v-spacer />
-      <v-btn color="secondary" text to="/sobre">Sobre</v-btn>
+      <v-btn text to="/sobre">Sobre</v-btn>
     </v-footer>
   </v-app>
 </template>
