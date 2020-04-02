@@ -6,7 +6,7 @@
   >
     <v-row class="float-right">
       <v-col>
-        <v-btn-toggle v-model="view" mandatory color="accent" dense>
+        <v-btn-toggle v-model="view" mandatory color="primary" dense>
           <v-btn value="normal">
             <v-icon>mdi-view-sequential</v-icon>
           </v-btn>

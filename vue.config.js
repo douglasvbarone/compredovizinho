@@ -7,7 +7,11 @@ module.exports = {
     })
   },
   pwa: {
-    themeColor: '#424242',
+    themeColor: '#2196F3',
     name: 'Compre do Vizinho'
+  },
+  devServer: {
+    port: 3000,
+    host: '0.0.0.0'
   }
 }

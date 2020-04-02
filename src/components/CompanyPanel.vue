@@ -25,7 +25,8 @@
         </v-row>
       </template>
     </v-expansion-panel-header>
-    <v-expansion-panel-content class="text-justify">
+
+    <v-expansion-panel-content>
       <v-row>
         <v-col>
           {{ description }}

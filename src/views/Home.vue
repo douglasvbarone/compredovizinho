@@ -1,5 +1,20 @@
 <template>
   <v-container class="home main ">
+    <v-app-bar
+      color="primary"
+      app
+      elevate-on-scroll
+      dark
+      fixed
+      shrink-on-scroll
+      prominent
+      scroll-threshold="20"
+    >
+      <v-toolbar-title>
+        <v-icon left>mdi-home-group</v-icon>
+        Compre do vizinho
+      </v-toolbar-title>
+    </v-app-bar>
     <v-row>
       <v-col :cols="12" :sm="'auto'">
         <LocationSelector :cities="cities" v-model="city" />
@@ -14,6 +29,13 @@
         <CompanyPanelsList v-if="!loading" :companies="filteredCompanies" />
       </v-col>
     </v-row>
+    <v-alert color="info" dark dismissible outlined>
+      <h3 class="title">
+        <v-icon color="info" left>mdi-comment-alert-outline</v-icon>ATENÇÃO!
+      </h3>
+      Todas as informações são fornecidas pelos próprios empresários/indivíduos.
+      Não nos responsabilizamos por informações falsas ou errôneas.
+    </v-alert>
   </v-container>
 </template>
 
@@ -29,7 +51,7 @@ export default {
   components: { LocationSelector, LoadingPanel, CompanyPanelsList, Search },
   data: () => ({
     search: '',
-    city: '',
+    city: 'Campo Grande',
     fetchedCompanies: [],
     loading: true
   }),
@@ -67,31 +89,43 @@ export default {
       ]
       return this.fetchedCompanies.filter(
         company =>
-          keysToSearch.some(key =>
-            company[key]
-              ? company[key].toLowerCase().includes(this.search.toLowerCase())
-              : false
-          )
-
-        // company.companyName
-        //   .toLowerCase()
-        //   .includes(this.search.toLocaleLowerCase()) ||
-        // company.description
-        //   .toLowerCase()
-        //   .includes(this.search.toLocaleLowerCase()) ||
-        // company.companyName
-        //   .toLowerCase()
-        //   .includes(this.search.toLocaleLowerCase())
+          this.city === 'Todas' ||
+          (company.city === this.city &&
+            keysToSearch.some(key =>
+              company[key]
+                ? company[key].toLowerCase().includes(this.search.toLowerCase())
+                : false
+            ))
       )
     },
     cities() {
-      return [
-        ...new Set(
-          this.fetchedCompanies.map(company => ({
+      const cities = []
+      const map = new Map()
+      for (const company of this.fetchedCompanies) {
+        if (!map.has(company.city)) {
+          map.set(company.city, true)
+          cities.push({
             city: company.city,
             state: company.state
-          }))
-        )
+          })
+        }
+      }
+
+      return [
+        { city: 'Todas', state: 'Brasil' },
+        ...cities.sort(function(a, b) {
+          const cityA = a.city.toUpperCase() // ignore upper and lowercase
+          const cityB = b.city.toUpperCase() // ignore upper and lowercase
+          if (cityA < cityB) {
+            return -1
+          }
+          if (cityA > cityB) {
+            return 1
+          }
+
+          // names must be equal
+          return 0
+        })
       ]
     }
   },

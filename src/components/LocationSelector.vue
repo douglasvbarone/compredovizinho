@@ -1,7 +1,56 @@
 <template>
-  <v-btn color="primary" block text class="mt-3" v-if="cities[0]"
-    ><v-icon left>mdi-map-marker</v-icon>{{ cities[0].city }}</v-btn
-  >
+  <div>
+    <v-btn
+      color="primary"
+      block
+      @click="dialog = true"
+      text
+      class="mt-3"
+      v-if="cities[0]"
+    >
+      <v-icon left>mdi-map-marker</v-icon>{{ value }}
+    </v-btn>
+    <v-dialog
+      v-model="dialog"
+      max-width="480"
+      :fullscreen="$vuetify.breakpoint.smAndDown"
+      scrollable
+    >
+      <v-card>
+        <v-card-title class="title primary white--text">
+          <v-icon left dark>mdi-map-marker</v-icon>
+          Escolha a cidade
+        </v-card-title>
+        <v-card-text>
+          <v-list two-line>
+            <v-list-item
+              v-for="(city, index) in cities"
+              :key="index"
+              @click="selectCity(city)"
+            >
+              <v-list-item-content>
+                <v-list-item-title>
+                  {{ city.city }}
+                </v-list-item-title>
+                <v-list-item-subtitle>
+                  {{ city.state }}
+                </v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-card-text>
+        <v-card-actions>
+          <v-icon left>mdi-comment-alert-outline</v-icon>
+          <small class=""
+            >Todas as cidades são informadas pelos próprios donos. Podem haver
+            duplicações ou erros.</small
+          >
+          <v-spacer />
+          <v-btn text @click="dialog = false">Cancelar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
@@ -10,6 +59,21 @@ export default {
   props: {
     cities: {
       type: Array
+    },
+    value: {
+      type: String,
+      default: 'Campo Grande'
+    }
+  },
+  data: () => ({
+    dialog: false,
+    choosenCity: ''
+  }),
+  methods: {
+    selectCity(city) {
+      this.$emit('input', city.city)
+      this.choosenCity = city.city
+      this.dialog = false
     }
   }
 }
