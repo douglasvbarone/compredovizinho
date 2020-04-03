@@ -17,7 +17,7 @@
       <v-spacer />
     </v-app-bar>
 
-    <AboutDrawer :value="drawer" @close="drawer = false" />
+    <AboutDrawer v-model.lazy="drawer" />
 
     <v-content>
       <router-view />
