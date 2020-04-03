@@ -17,7 +17,7 @@ const parseSheets = raw =>
       stNumber: entry['gsx$número'].$t,
       complement: entry['gsx$comp.'].$t,
       district: entry.gsx$bairro.$t,
-      city: entry.gsx$cidade.$t,
+      city: entry.gsx$cidade.$t && entry.gsx$cidade.$t.trim(),
       zipCode: entry.gsx$cep.$t,
       owner: entry['gsx$nomedoproprietárioouresponsável'].$t,
       instagram: entry.gsx$instagram.$t,
