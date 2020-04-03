@@ -1,20 +1,5 @@
 <template>
   <v-container class="home main ">
-    <v-app-bar
-      color="primary"
-      app
-      elevate-on-scroll
-      dark
-      fixed
-      shrink-on-scroll
-      prominent
-      scroll-threshold="20"
-    >
-      <v-toolbar-title>
-        <v-icon left>mdi-home-group</v-icon>
-        Compre do vizinho
-      </v-toolbar-title>
-    </v-app-bar>
     <v-row>
       <v-col :cols="12" :sm="'auto'">
         <LocationSelector :cities="cities" v-model="city" />
@@ -48,7 +33,12 @@ import LocationSelector from '../components/LocationSelector'
 
 export default {
   name: 'Home',
-  components: { LocationSelector, LoadingPanel, CompanyPanelsList, Search },
+  components: {
+    LocationSelector,
+    LoadingPanel,
+    CompanyPanelsList,
+    Search
+  },
   data: () => ({
     search: '',
     city: 'Campo Grande',
