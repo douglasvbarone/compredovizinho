@@ -4,9 +4,9 @@
       <v-col :cols="12" :sm="8" :offset-sm="2" :md="6" :offset-md="3">
         <v-card raised>
           <v-card-title class="primary white--text">
-            <v-btn icon to="/" left
-              ><v-icon left color="white">mdi-arrow-left</v-icon></v-btn
-            >
+            <v-btn icon to="/" left>
+              <v-icon color="white">mdi-arrow-left</v-icon>
+            </v-btn>
             Sobre...
           </v-card-title>
           <v-card-text class="pa-6">

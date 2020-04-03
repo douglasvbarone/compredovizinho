@@ -19,6 +19,7 @@
     <v-content>
       <router-view />
     </v-content>
+
     <v-footer color="secondary" dark app fixed>
       <v-btn
         href="https://forms.gle/62zt7bNm7Z7iXjaf6"
