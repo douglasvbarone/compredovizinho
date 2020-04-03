@@ -89,13 +89,12 @@ export default {
       ]
       return this.fetchedCompanies.filter(
         company =>
-          this.city === 'Todas' ||
-          (company.city === this.city &&
-            keysToSearch.some(key =>
-              company[key]
-                ? company[key].toLowerCase().includes(this.search.toLowerCase())
-                : false
-            ))
+          (this.city === 'Todas' || company.city === this.city) &&
+          keysToSearch.some(key =>
+            company[key]
+              ? company[key].toLowerCase().includes(this.search.toLowerCase())
+              : false
+          )
       )
     },
     cities() {
