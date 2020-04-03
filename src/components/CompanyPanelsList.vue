@@ -95,6 +95,9 @@ export default {
   watch: {
     companies() {
       this.qntItems = 5
+    },
+    view() {
+      this.infiniteScroll()
     }
   },
   created() {
