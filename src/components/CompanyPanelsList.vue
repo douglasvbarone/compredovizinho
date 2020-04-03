@@ -1,9 +1,5 @@
 <template>
-  <div
-    v-resize="calculateItemsPerPage"
-    id="companyList"
-    v-if="companies.length"
-  >
+  <div v-scroll="infiniteScroll" id="companyList" v-if="companies.length">
     <v-row class="float-right">
       <v-col>
         <v-btn-toggle v-model="view" mandatory color="primary" dense>
@@ -17,7 +13,7 @@
       </v-col>
     </v-row>
 
-    <v-expansion-panels :inset="$vuetify.breakpoint.mdAndUp" hover>
+    <v-expansion-panels :inset="$vuetify.breakpoint.smAndUp" hover>
       <CompanyPanel
         v-for="company in paginatedResults"
         :key="company.id"
@@ -41,22 +37,6 @@
         :description="company.description"
       />
     </v-expansion-panels>
-    <v-container>
-      <v-row>
-        <v-col
-          :cols="12"
-          :sm="8"
-          class="mx-auto"
-          v-if="companies.length >= itemsPerPage"
-        >
-          <v-pagination
-            :length="pageLength"
-            v-model="currentPage"
-            :total-visible="8"
-          />
-        </v-col>
-      </v-row>
-    </v-container>
   </div>
   <div v-else>
     <v-container class="fill-height">
@@ -76,22 +56,28 @@ export default {
   props: ['companies'],
   components: { CompanyPanel },
   data: () => ({
-    currentPage: 1,
-    itemsPerPage: 5,
-    view: 'normal'
+    view: 'normal',
+    qntItems: 5
   }),
   computed: {
     paginatedResults() {
-      const firstItem = (this.currentPage - 1) * this.itemsPerPage
-
-      return this.companies.slice(firstItem, firstItem + this.itemsPerPage)
-    },
-    pageLength() {
-      return Math.ceil(this.companies.length / this.itemsPerPage)
+      return this.companies.slice(0, this.qntItems)
     }
   },
   methods: {
-    calculateItemsPerPage() {
+    infiniteScroll() {
+      function bottomVisible() {
+        const scrollY = window.scrollY
+        const visible = document.documentElement.clientHeight + 100
+        const pageHeight = document.documentElement.scrollHeight
+        const bottomOfPage = visible + scrollY >= pageHeight
+        return bottomOfPage || pageHeight < visible
+      }
+
+      if (bottomVisible() && this.companies.length > this.qntItems)
+        this.qntItems = this.qntItems + 5
+    },
+    calculateInitialItems() {
       const vh = Math.max(
         document.documentElement.clientHeight,
         window.innerHeight || 0
@@ -103,18 +89,16 @@ export default {
 
       const calculated = vh ? Math.ceil((vh - OTHER_AREAS) / ITEM_HEIGHT) : 5
 
-      this.itemsPerPage = calculated > MINIMUM ? calculated : MINIMUM
-
-      this.currentPage = 1
+      this.qntItems = calculated > MINIMUM ? calculated : MINIMUM
     }
   },
   watch: {
-    view() {
-      this.calculateItemsPerPage()
+    companies() {
+      this.qntItems = 5
     }
   },
   created() {
-    this.calculateItemsPerPage()
+    this.calculateInitialItems()
   }
 }
 </script>

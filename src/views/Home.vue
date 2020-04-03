@@ -1,27 +1,28 @@
 <template>
-  <v-container class="home main ">
-    <v-row>
-      <v-col :cols="12" :sm="'auto'">
-        <LocationSelector :cities="cities" v-model="city" />
-      </v-col>
-      <v-col>
-        <search v-model="search" />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col :cols="12">
-        <LoadingPanel v-if="loading" />
-        <CompanyPanelsList v-if="!loading" :companies="filteredCompanies" />
-      </v-col>
-    </v-row>
-    <v-alert color="info" dark dismissible outlined>
-      <h3 class="title">
-        <v-icon color="info" left>mdi-comment-alert-outline</v-icon>ATENÇÃO!
-      </h3>
-      Todas as informações são fornecidas pelos próprios empresários/indivíduos.
-      Não nos responsabilizamos por informações falsas ou errôneas.
-    </v-alert>
-  </v-container>
+  <div>
+    <v-container class="home main mb-0 pb-0">
+      <v-row>
+        <v-col :cols="12" :sm="'auto'">
+          <LocationSelector :cities="cities" v-model="city" />
+        </v-col>
+        <v-col>
+          <search v-model="search" />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <DataWarning dismissible />
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col :cols="12">
+          <LoadingPanel v-if="loading" />
+          <CompanyPanelsList v-if="!loading" :companies="filteredCompanies" />
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -30,10 +31,12 @@ import { parseSheets } from '../tools/googleSheets'
 import CompanyPanelsList from '../components/CompanyPanelsList'
 import LoadingPanel from '../components/LoadingPanel'
 import LocationSelector from '../components/LocationSelector'
+import DataWarning from './DataWarning'
 
 export default {
   name: 'Home',
   components: {
+    DataWarning,
     LocationSelector,
     LoadingPanel,
     CompanyPanelsList,
