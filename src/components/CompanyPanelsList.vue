@@ -3,6 +3,10 @@
     <v-row class="float-right">
       <v-col>
         <v-btn-toggle v-model="view" mandatory color="primary" dense>
+          <v-btn disabled v-if="companies.length" text>
+            {{ companies.length }}
+            {{ companies.length > 1 ? 'Resultados' : 'Resultado' }}
+          </v-btn>
           <v-btn value="normal">
             <v-icon>mdi-view-sequential</v-icon>
           </v-btn>
