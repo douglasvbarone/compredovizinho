@@ -34,7 +34,7 @@
             <v-icon left>mdi-xml</v-icon>
           </v-col>
           <v-col>
-            Aplicação Web desenvolvida gratuitamente por <br />
+            Aplicação desenvolvida gratuitamente por <br />
             <a href="https://github.com/douglasvbarone" target="_blank">
               Douglas Barone
             </a>

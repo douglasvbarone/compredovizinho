@@ -26,11 +26,11 @@
             <v-list-item
               v-for="(city, index) in cities"
               :key="index"
-              @click="selectCity(city)"
+              @click="selectCity(city.name)"
             >
               <v-list-item-content>
                 <v-list-item-title>
-                  {{ city.city }}
+                  {{ city.name }}
                 </v-list-item-title>
                 <v-list-item-subtitle>
                   {{ city.state }}
@@ -62,17 +62,15 @@ export default {
     },
     value: {
       type: String,
-      default: 'Campo Grande'
+      default: 'Todas'
     }
   },
   data: () => ({
-    dialog: false,
-    choosenCity: ''
+    dialog: false
   }),
   methods: {
-    selectCity(city) {
-      this.$emit('input', city.city)
-      this.choosenCity = city.city
+    selectCity(name) {
+      this.$emit('input', name)
       this.dialog = false
     }
   }

@@ -44,7 +44,7 @@ export default {
   },
   data: () => ({
     search: '',
-    city: 'Campo Grande',
+    city: 'Carregando...',
     fetchedCompanies: [],
     loading: true
   }),
@@ -97,32 +97,36 @@ export default {
         if (!map.has(company.city)) {
           map.set(company.city, true)
           cities.push({
-            city: company.city,
+            name: company.city,
             state: company.state
           })
         }
       }
 
       return [
-        { city: 'Todas', state: 'Brasil' },
-        ...cities.sort(function(a, b) {
-          const cityA = a.city.toUpperCase() // ignore upper and lowercase
-          const cityB = b.city.toUpperCase() // ignore upper and lowercase
-          if (cityA < cityB) {
-            return -1
-          }
-          if (cityA > cityB) {
-            return 1
-          }
-
-          // names must be equal
-          return 0
-        })
+        {
+          name: 'Todas',
+          state: 'Brasil'
+        },
+        ...cities.sort((a, b) =>
+          a.name.toUpperCase() < b.name.toUpperCase() ? -1 : 1
+        )
       ]
     }
   },
-  async created() {
-    this.fetchSheet()
+  watch: {
+    city() {
+      localStorage.setItem('city', this.city)
+    }
+  },
+  async mounted() {
+    await this.fetchSheet()
+
+    const savedCity = localStorage.getItem('city')
+
+    this.city = this.cities.some(city => city.name === savedCity)
+      ? savedCity
+      : 'Todas'
   }
 }
 </script>
