@@ -8,6 +8,8 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 import './styles/styles.scss'
 
+import './tools/capitalize'
+
 Vue.config.productionTip = false
 
 new Vue({
