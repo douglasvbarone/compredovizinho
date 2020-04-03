@@ -15,7 +15,6 @@
         Compre do vizinho
       </v-toolbar-title>
       <v-spacer />
-      <ThemeSwitcher />
     </v-app-bar>
     <v-content>
       <router-view />
@@ -30,13 +29,17 @@
         Quero meu negócio aqui!
       </v-btn>
       <v-btn text to="/sobre">Sobre</v-btn>
+      <v-spacer />
+      <ThemeSwitcher v-if="$vuetify.breakpoint.smAndUp" />
     </v-footer>
   </v-app>
 </template>
 
 <script>
+import ThemeSwitcher from './components/ThemeSwitcher'
 export default {
   name: 'App',
+  components: { ThemeSwitcher },
   mounted() {
     if (
       window.matchMedia &&
