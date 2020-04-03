@@ -57,7 +57,7 @@ export default {
   components: { CompanyPanel },
   data: () => ({
     view: 'normal',
-    qntItems: 5
+    qntItems: 10
   }),
   computed: {
     paginatedResults() {
