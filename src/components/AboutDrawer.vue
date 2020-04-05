@@ -10,7 +10,7 @@
       oferecidos por empresas e autônomos presentes do bairro das grandes
       cidades.
     </v-card-text>
-    <v-card-text> Versão: <span class="code">20200403beta</span> </v-card-text>
+    <v-card-text> Versão: <span class="code">20200404beta</span> </v-card-text>
 
     <v-card-text>
       <DataWarning />
