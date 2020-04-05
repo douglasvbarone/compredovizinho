@@ -35,10 +35,6 @@
       <v-row>
         <v-col>
           <span class="font-weight-medium">Proprietário: </span>{{ owner }}
-          <span v-if="email"
-            >(<a :href="`mailto:${email}}`">{{ email }}</a
-            >)</span
-          >
         </v-col>
       </v-row>
       <v-row v-if="segment">
