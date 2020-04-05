@@ -99,8 +99,9 @@ export default {
       if (bottomVisible() && this.companies.length > this.qntItems)
         this.qntItems = this.qntItems + 10
     },
-    scrollUp() {
-      this.$vuetify.goTo(0)
+    async scrollUp() {
+      await this.$vuetify.goTo(0)
+      this.qntItems = 20
     }
   },
   watch: {

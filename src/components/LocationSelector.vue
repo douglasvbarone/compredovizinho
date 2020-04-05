@@ -12,12 +12,12 @@
     </v-btn>
     <v-dialog
       v-model="dialog"
-      max-width="480"
+      :max-width="400"
       :fullscreen="$vuetify.breakpoint.smAndDown"
       scrollable
     >
       <v-card>
-        <v-card-title class="title primary white--text">
+        <v-card-title class="primary white--text">
           <v-icon left dark>mdi-map-marker</v-icon>
           Escolha a cidade
         </v-card-title>

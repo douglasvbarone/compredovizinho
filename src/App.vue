@@ -26,7 +26,7 @@
       <router-view />
     </v-content>
 
-    <v-footer color="secondary" app fixed :style="{ opacity: 0.9 }">
+    <v-footer color="secondary" dark app fixed :style="{ opacity: 0.9 }">
       <v-btn
         href="https://forms.gle/62zt7bNm7Z7iXjaf6"
         target="_blank"

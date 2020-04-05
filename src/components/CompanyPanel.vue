@@ -105,7 +105,7 @@ export default {
         sm: 55,
         md: 85,
         lg: 95,
-        xl: 200
+        xl: 115
       }
 
       if (text.length <= sizes[this.$vuetify.breakpoint.name]) return text
