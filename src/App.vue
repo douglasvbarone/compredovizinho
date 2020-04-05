@@ -15,6 +15,9 @@
         Compre do vizinho
       </v-toolbar-title>
       <v-spacer />
+      <v-btn icon @click="drawer = !drawer">
+        <v-icon>mdi-dots-vertical</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <AboutDrawer v-model.lazy="drawer" />
@@ -23,31 +26,24 @@
       <router-view />
     </v-content>
 
-    <v-footer color="secondary" dark app fixed :style="{ opacity: 0.9 }">
+    <v-footer color="secondary" app fixed :style="{ opacity: 0.9 }">
       <v-btn
         href="https://forms.gle/62zt7bNm7Z7iXjaf6"
         target="_blank"
         :elevation="0"
         text
-        large
       >
         Quero meu negócio aqui!
-      </v-btn>
-      <v-spacer />
-      <ThemeSwitcher />
-      <v-btn icon @click="drawer = !drawer">
-        <v-icon>mdi-information-variant</v-icon>
       </v-btn>
     </v-footer>
   </v-app>
 </template>
 
 <script>
-import ThemeSwitcher from './components/ThemeSwitcher'
 import AboutDrawer from './components/AboutDrawer'
 export default {
   name: 'App',
-  components: { AboutDrawer, ThemeSwitcher },
+  components: { AboutDrawer },
   data: () => ({
     drawer: false
   }),

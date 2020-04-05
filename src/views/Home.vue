@@ -33,6 +33,8 @@ import LoadingPanel from '../components/LoadingPanel'
 import LocationSelector from '../components/LocationSelector'
 import DataWarning from './DataWarning'
 
+import Fuse from 'fuse.js'
+
 export default {
   name: 'Home',
   components: {
@@ -65,7 +67,14 @@ export default {
     }
   },
   computed: {
+    cityCompanies() {
+      return this.fetchedCompanies.filter(
+        company => this.city === 'Todas' || company.city === this.city
+      )
+    },
     filteredCompanies() {
+      if (!this.cityCompanies.length || !this.search) return this.cityCompanies
+
       const keysToSearch = [
         'companyName',
         'description',
@@ -80,15 +89,13 @@ export default {
         'street',
         'whatsapp'
       ]
-      return this.fetchedCompanies.filter(
-        company =>
-          (this.city === 'Todas' || company.city === this.city) &&
-          keysToSearch.some(key =>
-            company[key]
-              ? company[key].toLowerCase().includes(this.search.toLowerCase())
-              : false
-          )
-      )
+
+      const searcher = new Fuse(this.cityCompanies, {
+        keys: keysToSearch,
+        threshold: 0.5
+      })
+
+      return searcher.search(this.search).map(result => result.item)
     },
     cities() {
       const cities = []

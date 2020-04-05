@@ -1,5 +1,19 @@
 <template>
   <div v-scroll="infiniteScroll" id="companyList" v-if="companies.length">
+    <v-fab-transition>
+      <v-btn
+        v-if="topBtn"
+        large
+        fab
+        fixed
+        bottom
+        right
+        color="primary"
+        @click="scrollUp"
+      >
+        <v-icon>mdi-arrow-up-bold</v-icon>
+      </v-btn>
+    </v-fab-transition>
     <v-row class="float-right">
       <v-col>
         <v-btn-toggle v-model="view" mandatory color="primary" dense>
@@ -61,7 +75,8 @@ export default {
   components: { CompanyPanel },
   data: () => ({
     view: 'normal',
-    qntItems: 10
+    qntItems: 20,
+    topBtn: false
   }),
   computed: {
     paginatedResults() {
@@ -75,37 +90,29 @@ export default {
         const visible = document.documentElement.clientHeight + 100
         const pageHeight = document.documentElement.scrollHeight
         const bottomOfPage = visible + scrollY >= pageHeight
+
         return bottomOfPage || pageHeight < visible
       }
 
+      this.topBtn = window.scrollY > 200
+
       if (bottomVisible() && this.companies.length > this.qntItems)
-        this.qntItems = this.qntItems + 5
+        this.qntItems = this.qntItems + 10
     },
-    calculateInitialItems() {
-      const vh = Math.max(
-        document.documentElement.clientHeight,
-        window.innerHeight || 0
-      )
-
-      const OTHER_AREAS = 500
-      const ITEM_HEIGHT = this.view === 'normal' ? 94 : 48
-      const MINIMUM = 5
-
-      const calculated = vh ? Math.ceil((vh - OTHER_AREAS) / ITEM_HEIGHT) : 5
-
-      this.qntItems = calculated > MINIMUM ? calculated : MINIMUM
+    scrollUp() {
+      this.$vuetify.goTo(0)
     }
   },
   watch: {
     companies() {
-      this.qntItems = 5
+      this.qntItems = 20
     },
     view() {
       this.infiniteScroll()
     }
   },
-  created() {
-    this.calculateInitialItems()
+  mounted() {
+    this.infiniteScroll()
   }
 }
 </script>

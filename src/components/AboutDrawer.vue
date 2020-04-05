@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-model="drawer" app :width="360" temporary>
+  <v-navigation-drawer right v-model="drawer" app :width="360" temporary>
     <v-card-title class="title primary white--text">
       Sobre...
     </v-card-title>
@@ -10,7 +10,9 @@
       oferecidos por empresas e autônomos presentes do bairro das grandes
       cidades.
     </v-card-text>
-    <v-card-text> Versão: <span class="code">20200404beta</span> </v-card-text>
+    <v-card-text>
+      <strong>Versão</strong>: <span class="code">PWA200405 beta</span>
+    </v-card-text>
 
     <v-card-text>
       <DataWarning />
