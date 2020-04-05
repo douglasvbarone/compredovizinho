@@ -8,7 +8,6 @@
       fixed
       shrink-on-scroll
       prominent
-      scroll-threshold="20"
     >
       <v-toolbar-title>
         <v-icon left>mdi-home-group</v-icon>
