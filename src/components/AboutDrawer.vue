@@ -1,6 +1,6 @@
 <template>
   <v-navigation-drawer right v-model="drawer" app :width="360" temporary>
-    <v-card-title class="title primary white--text">
+    <v-card-title>
       Sobre...
     </v-card-title>
     <v-card-text class="mt-4">
@@ -9,27 +9,7 @@
       apoiar os pequenos negócios e incentivar o consumo de serviços e produtos
       oferecidos por empresas e autônomos presentes do bairro das grandes
       cidades.
-    </v-card-text>
-    <v-card-text>
-      <strong>Versão</strong>: <span class="code">PWA200405 beta</span>
-    </v-card-text>
 
-    <v-card-text>
-      <DataWarning />
-    </v-card-text>
-    <v-card-actions>
-      <v-btn
-        block
-        @click="$emit('input', false)"
-        x-large
-        color="primary"
-        :elevation="0"
-      >
-        OK
-      </v-btn>
-    </v-card-actions>
-
-    <v-footer fixed>
       <v-container>
         <v-row align="center">
           <v-col class="shrink">
@@ -40,18 +20,33 @@
             <a href="https://github.com/douglasvbarone" target="_blank">
               Douglas Barone
             </a>
+            <div class="mt-2">
+              <strong>Versão</strong>: <span class="code">PWA200405 beta</span>
+            </div>
           </v-col>
         </v-row>
       </v-container>
-    </v-footer>
+    </v-card-text>
+    <v-card-actions>
+      <v-spacer />
+      <v-btn
+        @click="$emit('input', false)"
+        x-large
+        color="primary"
+        :elevation="0"
+      >
+        <v-icon left>mdi-check</v-icon>
+        OK
+      </v-btn>
+      <v-spacer />
+    </v-card-actions>
   </v-navigation-drawer>
 </template>
 
 <script>
-import DataWarning from '../views/DataWarning'
 export default {
   name: 'AboutDrawer',
-  components: { DataWarning },
+  components: {},
   props: ['value'],
   data: () => ({ drawer: false }),
   watch: {
