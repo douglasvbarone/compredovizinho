@@ -31,7 +31,7 @@
       </v-col>
     </v-row>
 
-    <v-expansion-panels :inset="$vuetify.breakpoint.smAndUp" hover>
+    <v-expansion-panels :inset="$vuetify.breakpoint.smAndUp" hover multiple>
       <CompanyPanel
         v-for="company in paginatedResults"
         :key="company.id"

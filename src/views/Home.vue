@@ -18,7 +18,7 @@
       <v-row>
         <v-col :cols="12">
           <LoadingPanel v-if="loading" />
-          <CompanyPanelsList v-if="!loading" :companies="filteredCompanies" />
+          <CompanyPanelList v-if="!loading" :companies="filteredCompanies" />
         </v-col>
       </v-row>
     </v-container>
@@ -28,7 +28,7 @@
 <script>
 import Search from '../components/Search'
 import { parseSheets } from '../tools/googleSheets'
-import CompanyPanelsList from '../components/CompanyPanelsList'
+import CompanyPanelList from '../components/CompanyPanelList'
 import LoadingPanel from '../components/LoadingPanel'
 import LocationSelector from '../components/LocationSelector'
 import DataWarning from './DataWarning'
@@ -41,7 +41,7 @@ export default {
     DataWarning,
     LocationSelector,
     LoadingPanel,
-    CompanyPanelsList,
+    CompanyPanelList,
     Search
   },
   data: () => ({
