@@ -22,7 +22,7 @@
     <AboutDrawer v-model.lazy="drawer" />
 
     <v-content>
-      <router-view />
+      <Home />
     </v-content>
 
     <v-footer color="secondary" dark app fixed :style="{ opacity: 0.9 }">
@@ -40,9 +40,10 @@
 
 <script>
 import AboutDrawer from './components/AboutDrawer'
+import Home from './views/Home'
 export default {
   name: 'App',
-  components: { AboutDrawer },
+  components: { Home, AboutDrawer },
   data: () => ({
     drawer: false
   }),

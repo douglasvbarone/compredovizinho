@@ -11,7 +11,7 @@
       </v-row>
       <v-row>
         <v-col>
-          <DataWarning dismissible />
+          <WarningAlert dismissible />
         </v-col>
       </v-row>
 
@@ -31,14 +31,14 @@ import { parseSheets } from '../tools/googleSheets'
 import CompanyPanelList from '../components/CompanyPanelList'
 import LoadingPanel from '../components/LoadingPanel'
 import LocationSelector from '../components/LocationSelector'
-import DataWarning from './DataWarning'
+import WarningAlert from '../components/WarningAlert'
 
 import Fuse from 'fuse.js'
 
 export default {
   name: 'Home',
   components: {
-    DataWarning,
+    WarningAlert,
     LocationSelector,
     LoadingPanel,
     CompanyPanelList,
