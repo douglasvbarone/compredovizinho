@@ -11,10 +11,10 @@ module.exports = {
     themeColor: '#2196F3',
     msTileColor: '#2196F3',
     name: 'Compre do Vizinho',
+
     manifestOptions: {
       background_color: '#2196F3'
-    },
-
+    }
   },
   devServer: {
     port: 3000,
