@@ -12,7 +12,7 @@
     </v-btn>
     <v-dialog
       v-model="dialog"
-      :max-width="400"
+      :max-width="480"
       :fullscreen="$vuetify.breakpoint.smAndDown"
       scrollable
     >
@@ -45,8 +45,9 @@
             >Todas as cidades são informadas pelos próprios donos. Podem haver
             duplicações ou erros.</small
           >
-          <v-spacer />
-          <v-btn text @click="dialog = false">Cancelar</v-btn>
+        </v-card-actions>
+        <v-card-actions>
+          <v-btn text block @click="dialog = false">Cancelar</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
