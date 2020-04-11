@@ -61,6 +61,7 @@ export default {
         alert(
           'Ocorreu um erro ao carregar a lista de empresas. Tente novamente mais tarde.'
         )
+        console.log(e)
       } finally {
         this.loading = false
       }
