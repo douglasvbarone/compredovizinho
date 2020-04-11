@@ -21,7 +21,7 @@
               Douglas Barone
             </a>
             <div class="mt-2">
-              <strong>Versão</strong>: <span class="code">PWA200405 beta</span>
+              <strong>Versão</strong>: <span class="code">PWA200411 beta</span>
             </div>
           </v-col>
         </v-row>
