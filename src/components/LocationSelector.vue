@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-btn
-      color="primary"
+      color="secondary"
       block
       @click="dialog = true"
       text

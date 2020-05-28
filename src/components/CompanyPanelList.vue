@@ -8,7 +8,7 @@
         fixed
         bottom
         right
-        color="primary"
+        color="accent"
         @click="scrollUp"
       >
         <v-icon>mdi-arrow-up-bold</v-icon>
@@ -16,7 +16,7 @@
     </v-fab-transition>
     <v-row class="float-right">
       <v-col>
-        <v-btn-toggle v-model="view" mandatory color="primary" dense>
+        <v-btn-toggle v-model="view" mandatory color="secondary" dense>
           <v-btn disabled v-if="companies.length" text>
             {{ companies.length }}
             {{ companies.length > 1 ? 'Resultados' : 'Resultado' }}
