@@ -1,6 +1,7 @@
 <template>
   <v-text-field
     class="search-input"
+    color="primary"
     v-model="search"
     @input="$emit('input', search)"
     outlined

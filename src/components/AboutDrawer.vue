@@ -16,12 +16,8 @@
             <v-icon left>mdi-xml</v-icon>
           </v-col>
           <v-col>
-            Aplicação desenvolvida gratuitamente por <br />
-            <a href="https://github.com/douglasvbarone" target="_blank">
-              Douglas Barone
-            </a>
             <div class="mt-2">
-              <strong>Versão</strong>: <span class="code">PWA200411 beta</span>
+              <strong>Versão</strong>: <span class="code">PWA2000528 beta</span>
             </div>
           </v-col>
         </v-row>

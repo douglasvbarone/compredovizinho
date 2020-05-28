@@ -1,17 +1,8 @@
 <template>
   <v-app>
-    <v-app-bar
-      color="primary"
-      app
-      elevate-on-scroll
-      dark
-      fixed
-      shrink-on-scroll
-      prominent
-    >
+    <v-app-bar color="#FFCC00" app elevate-on-scroll dark fixed>
       <v-toolbar-title>
-        <v-icon left>mdi-home-group</v-icon>
-        Compre do vizinho
+        <v-img src="/img/logo.png" />
       </v-toolbar-title>
       <v-spacer />
       <v-btn icon @click="drawer = !drawer">
