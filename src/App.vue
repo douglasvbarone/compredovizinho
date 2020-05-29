@@ -1,10 +1,18 @@
 <template>
   <v-app>
-    <v-app-bar color="#FFCC00" app elevate-on-scroll dark fixed>
-      <v-toolbar-title>
-        <v-img src="/img/logo.png" />
-      </v-toolbar-title>
-      <v-spacer />
+    <v-app-bar color="#FFCC00" app elevate-on-scroll fixed>
+      <v-container style="max-width: 960px" class="mx-auto" fluid>
+        <v-row align-content="center">
+          <v-col class="shrink pa-0">
+            <v-img :max-height="52" src="/img/logo.png" contain />
+          </v-col>
+          <v-col>
+            <span class="title ml-4" v-if="$vuetify.breakpoint.mdAndUp">
+              Anuncie o que você quer Vender e Procure o que deseja Comprar
+            </span></v-col
+          >
+        </v-row>
+      </v-container>
       <v-btn icon @click="drawer = !drawer">
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>

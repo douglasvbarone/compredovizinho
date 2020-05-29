@@ -8,12 +8,12 @@ module.exports = {
     })
   },
   pwa: {
-    themeColor: '#2196F3',
-    msTileColor: '#2196F3',
+    themeColor: '#fdcc03',
+    msTileColor: '#fdcc03',
     name: 'Compre do Vizinho',
 
     manifestOptions: {
-      background_color: '#2196F3'
+      background_color: '#ffffff'
     }
   },
   devServer: {

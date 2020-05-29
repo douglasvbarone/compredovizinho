@@ -8,7 +8,7 @@
         fixed
         bottom
         right
-        color="accent"
+        color="white"
         @click="scrollUp"
       >
         <v-icon>mdi-arrow-up-bold</v-icon>
