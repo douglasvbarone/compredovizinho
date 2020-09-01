@@ -9,8 +9,8 @@
           <v-col>
             <span class="title ml-4" v-if="$vuetify.breakpoint.mdAndUp">
               Anuncie o que você quer Vender e Procure o que deseja Comprar
-            </span></v-col
-          >
+            </span>
+          </v-col>
         </v-row>
       </v-container>
       <v-btn icon @click="drawer = !drawer">
